@@ -1,0 +1,148 @@
+Four Objects
+
+
+
+Object HanoiTower
+
+	attributes list:
+		ArrayList<Integer> pole1
+		ArrayList<Integer> pole2
+		ArrayList<Integer> pole3
+		ArrayList<Poles> historyMove;
+		int numberOfDisc;
+
+
+	methods list:
+		void move1(ArrayList<Integer>, ArrayList<Integer>, ArrayList<Integer>)
+		void move2(ArrayList<Integer>, ArrayList<Integer>, ArrayList<Integer>)
+		void sovle()
+		void printMove(int, ArrayList<Integer>, ArrayList<Integer>)
+		void saveMove(ArrayList<Integer>, ArrayList<Integer>, ArrayList<Integer>)
+		void printHistory()
+
+
+
+	Explanation:
+
+		ArrayList<Integer> pole1, pole2, pole3:
+			use ArrayList to reprensent poles and Integer to represent discs
+			the value of the Integer represents the size of the disc
+
+		ArrayList<Poles> historyMove:
+			to save each steps of the three poles
+			use ArrayList because the number of moves is undefined 
+
+		int numberOfDisc:
+			to save the number of total discs
+
+		void move1(ArrayList<Integer>, ArrayList<Integer>, ArrayList<Integer>):
+			move the top disc as pole1->pole2 or pole2->pole3 or pole3->pole1
+
+		void move2(ArrayList<Integer>, ArrayList<Integer>, ArrayList<Integer>):
+			find the rest two poles and compare their own top discs
+			move the smaller one onto the bigger one
+			if one of the two poles is empty
+			move the top disc from the other pole to the empty pole
+
+		void sovle():
+			solve the problem by loop move1 and move2
+
+		void saveMove():
+			save the three poles into history poles 
+
+		void printHistory():
+			print the status of each steps of the three poles
+			write for test
+
+
+
+Object Poles
+
+	attribute list:
+		ArrayList<Integer> pole1Discs
+		ArrayList<Integer> pole2Discs
+		ArrayList<Integer> pole3Discs
+	
+	method list:
+		none
+
+	Explanation:
+		use ArrayList because the numbers of discs in each poles are uncertain
+		use Integer to represent discs
+		the value of Interger represent the size of disc
+		name as pole1Discs pole2Discs pole3Discs to differentiate from the pole1 pole2 pole3 in HanoiTower
+
+
+
+Object MyWindow extends JFrame
+
+	attribute list:
+		none(except the attributes from JFrame)
+
+	method list:
+		void setWindowAttribute()
+		void createComponent()
+		void createMenuAndHanoiShow
+
+	explanation:
+		void setWindowAttribute():
+			set the close on exit, the size, the title, etc.
+
+		void createComponenet():
+			create the panels and set the layout.
+			panels includes:main panel, title panel, menu panel and hanoiShow panel
+			specifically use creatMenuAndHanoiShow() to create the two panels
+
+		void createMenuAndHanoiShow():
+			create the buttons for menu
+			write the action listener for the five buttons to control the hanoishow
+			buttons include:generateButton, randomGenerateButton, startAnimationButton, nextButton, clearButton
+			the hanoi show panel include an instance of MyCanvas
+
+
+
+Object MyCanvas extends Canvas
+
+	attributes list:
+		boolean isGenerated=false;
+		boolean isStarted=false;
+		static int thicknessOfDisc=10;
+		int numberOfDiscs=3;
+		int move=1;
+	
+	methods list:
+		void paint(Graphics g)
+		void painDiscs(Graphics g)
+		Color getColor(int number)
+		int getWidth(int number)
+	
+	Explanation:
+		boolean isGenerated isStarted:
+			to record the click event of the two buttons
+		
+		int thicknessOfDisc:
+			to save the static number
+		
+		int numberOfDisc:
+			to save the numberOfDisc
+		
+		int move:
+			to count the move
+
+		void paint(Graphics g):
+			contains the paint event of the different buttons
+			including the painting process of isGenerated
+		
+		void painDiscs(Graphics g):
+			paint the discs according to move
+			use the historyMove of HanoiTower as reference
+		
+		Color getColor(int number):
+			get a color according to disc number
+			only three colors 
+		
+		int getWidth(int number):
+			get the width of each disc according to disc number
+			the biggist width is 150
+			
+
